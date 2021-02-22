@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
@@ -34,6 +35,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_PERMISSION =1 ;
+    private final String TAG = this.getClass().getSimpleName();
     TabLayout tabLayout;
     ViewPager viewPager;
     TabItem songTab,albumTab;
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d(TAG,"create state");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -110,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(fragmentsAdapter);
         tabLayout.setupWithViewPager(viewPager);
         FragmentsAdapter.getAllAudio(this);
-
     }
 
     @Override
@@ -126,8 +128,42 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+    /*
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG,"onStart state");
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG,"onResume state");
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG,"onPause state");
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG,"onStop state");
+    }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG,"onRestart state");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG,"onDestroy state");
+    }
+
+     */
 }

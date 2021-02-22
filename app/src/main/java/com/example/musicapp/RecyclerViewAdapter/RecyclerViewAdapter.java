@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.zip.Inflater;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    ArrayList<SongFiles> songFiles;
+    public static ArrayList<SongFiles> songFiles;
     Context context;
     public RecyclerViewAdapter(Context context){
         this.context=context;
@@ -52,11 +52,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context, IndividualSongActivity.class);
+                intent.putExtra("position",position);
                 context.startActivity(intent);
             }
         });
     }
-    private byte[] getAlbumArt(String uri){
+    public byte[] getAlbumArt(String uri){
         MediaMetadataRetriever retriever=new MediaMetadataRetriever();
         retriever.setDataSource(uri);
         byte[] art=retriever.getEmbeddedPicture();
